@@ -139,10 +139,6 @@ def get_mevzuat_url(url, content):
             search_words.insert(0, words[i])
         else:
             break
-
-    # if len(words) > 5:
-    #     words = words[-6:]
-    print(search_words)
     
     search_words = " ".join(search_words)
     highlight_text = urllib.parse.quote(search_words)
