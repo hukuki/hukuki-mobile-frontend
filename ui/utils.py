@@ -132,16 +132,19 @@ def get_mevzuat_url(url, content):
 
     words = content.replace("\\", "").replace("*", "").split(" ")
     search_words = []
-    regex = r"^[a-zA-ZığüşöçĞÜŞÖÇİ.]*$"
+    regex = r"^[a-zA-ZığüşöçĞÜŞÖÇİ.,]*$"
 
-    for i in range(len(words), len(words)-15, -1):
+    for i in range(len(words)-1, len(words)-min(15, len(words)), -1):
         if re.search(regex, words[i]):
             search_words.insert(0, words[i])
+        else:
+            break
 
     # if len(words) > 5:
     #     words = words[-6:]
+    print(search_words)
     
-    words = " ".join(words)
+    search_words = " ".join(search_words)
     highlight_text = urllib.parse.quote(search_words)
     
     result = prefix + search_params + "#:~:text=" + highlight_text
