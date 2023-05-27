@@ -131,8 +131,8 @@ def get_mevzuat_url(url, content):
 
     words = content.replace("\\", "").replace("*", "").split(" ")
 
-    if len(words) > 3:
-        words = words[-4:]
+    if len(words) > 5:
+        words = words[-6:]
     
     words = " ".join(words)
     highlight_text = urllib.parse.quote(words)
