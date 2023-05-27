@@ -9,6 +9,7 @@ from time import sleep
 import requests
 import streamlit as st
 import urllib.parse
+import re
 
 API_ENDPOINT = os.getenv("API_ENDPOINT", "http://147.189.198.116:8000")
 STATUS = "initialized"
@@ -130,12 +131,18 @@ def get_mevzuat_url(url, content):
     search_params = url[8:]
 
     words = content.replace("\\", "").replace("*", "").split(" ")
+    search_words = []
+    regex = r"^[a-zA-ZığüşöçĞÜŞÖÇİ.]*$"
 
-    if len(words) > 5:
-        words = words[-6:]
+    for i in range(len(words), len(words)-15, -1):
+        if re.search(regex, words[i]):
+            search_words.insert(0, words[i])
+
+    # if len(words) > 5:
+    #     words = words[-6:]
     
     words = " ".join(words)
-    highlight_text = urllib.parse.quote(words)
+    highlight_text = urllib.parse.quote(search_words)
     
     result = prefix + search_params + "#:~:text=" + highlight_text
 
