@@ -1,1 +1,1 @@
-# hukuki-mobile-frontend
+Deeplex ile binlerce mevzuat arasından yapay zeka ile arama yapın. 🧠 💼
